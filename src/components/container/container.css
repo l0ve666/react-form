@@ -39,9 +39,9 @@ p {
     display: flex;
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
-    font-weight: 100;
     line-height: 20px;
-    margin: 20px 0 30px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .text {
@@ -68,6 +68,7 @@ button{
     padding: 12px 45px;
     text-transform: uppercase;
     transition: 100ms ease;
+    margin-bottom: 10px;
 }
 
 button:active {
@@ -86,17 +87,16 @@ form {
     flex-direction: column;
     text-align: center;
     background-color: white;
-    padding: 0 50px;
     height: 100%;
 }
 
 input {
     border: none;
     background-color: #EDEDEDFF;
-    padding: 12px 15px;
-    margin: 8px 0;
+    padding: 12px 0px;
+    margin: 2px 0;
     height: 50px;
-    width: 350px;
+    width: 300px;
 }
 
 .container {
@@ -107,7 +107,7 @@ input {
     border: 0.1vh #e1dede solid;
     box-shadow: 10px 24px 28px 5px #adacac;
     width: 880px;
-    height: 480px;
+    height: 500px;
 }
 
 .account {

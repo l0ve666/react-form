@@ -6,6 +6,8 @@ import google from './img/google.png'
 import facebook from './img/facebook.png'
 import {createAccount, infoLoginRight, infoLoginLeft, btn} from '../modules/animation'
 import containerClick from "../modules/activeanim";
+import contents from "../modules/inputs";
+import { useForm } from 'react-hook-form'
 
 
 
@@ -15,28 +17,25 @@ class Container extends Component {
             <div className={"container"}>
                 <div className="account create-account">
                     <Form action="#" id="form">
-                        <h1 className="info-login">{createAccount.title}</h1>
+                         <h1 className="info-login">{createAccount.title}</h1>
                         <div className="icon-container">
                             <a href="#" className="icon"><img alt="facebook" src={facebook}/></a>
                             <a href="#" className="icon"><img alt="google" src={google}/></a>
                             <a href="#" className="icon"><img alt="Instagram" src={instagram}/></a>
                         </div>
                         <p className="text">{createAccount.subTitle}</p>
-                        <input className="name-login field createAccountInput" type="text"
-                               placeholder="Name"
-
-                        />
-
-                        <input className="email-login field createAccountInput" type="email"
-                               placeholder="Email"
-
-                        />
-                        <span className="errorEmail invalid1"> </span>
-
-                        <input className="password-login field createAccountInput" type="password"
-                               placeholder="Password"
-
-                        />
+                        {contents.inputs.map((input,key)=>{
+                            return(
+                                <div key={key}>
+                                    <p>
+                                        <label>{input.label}</label>
+                                    </p>
+                                    <p>
+                                        <input name={input.name}/>
+                                    </p>
+                                </div>
+                            )
+                        })}
                         <span className="errorPassword invalid1"> </span>
                         <button className="sign-Up disabled" type="submit"
                                 disabled="disabled">{createAccount.button}</button>
@@ -50,16 +49,31 @@ class Container extends Component {
                             <a href="#" className="icon"><img alt="google" src={google}/></a>
                             <a href="#" className="icon"><img alt="Instagram" src={instagram}/></a>
                         </div>
-                        <p className="text">{btn.subTitle}</p>
-                        <input className="sign_Input email-connecting field" type="email"
-                               placeholder="Email"
+                        {contents.inputs.map((input,key)=>{
+                            return(
+                                <div key={key}>
+                                    <p>
+                                        <label>{input.password}</label>
+                                    </p>
+                                    <p>
+                                        <input name={input.name}/>
+                                    </p>
+                                </div>
+                            )
+                        })}
 
-                        />
-                        <span className="error-Email invalid1"> </span>
-                        <input className="sign_Input password-connecting field" type="password"
-                               placeholder="Password"
 
-                        />
+
+                        {/*<p className="text">{btn.subTitle}</p>*/}
+                        {/*<input className="sign_Input email-connecting field" type="email"*/}
+                        {/*       placeholder="Email"*/}
+
+                        {/*/>*/}
+                        {/*<span className="error-Email invalid1"> </span>*/}
+                        {/*<input className="sign_Input password-connecting field" type="password"*/}
+                        {/*       placeholder="Password"*/}
+
+                        {/*/>*/}
                         <span className="error-Password invalid1"> </span>
                         <a href="#" className="forgot-password">{btn.footer}</a>
                         <button className="sign-In" type="submit">{btn.button}</button>
