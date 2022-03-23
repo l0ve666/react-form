@@ -28,6 +28,11 @@ function Container() {
         reset()
     }
 
+    const onLogin = (data) =>{
+        data.preventDefault()
+        reset()
+    }
+
     return (
         <div className={"container"}>
             <div className="account create-account">
@@ -42,10 +47,11 @@ function Container() {
                 </form>
             </div>
             <div className="account singIn">
-                <form action="#" className="form" onSubmit={onSubmit} id={'form'}>
+                <form action="#" className="form" onSubmit={onLogin} id={'form'}>
                     <h1 className="info-login">{btn.title}</h1>
                     <Img/>
-
+                    <input type="email" placeholder={`Email`}/>
+                    <input type="password" placeholder={`Password`}/>
 
                     <a href="#" className="forgot-password">{btn.footer}</a>
                     <button className="sign-In" type="submit">{btn.button}</button>
