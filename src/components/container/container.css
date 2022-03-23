@@ -71,9 +71,11 @@ button{
     margin-bottom: 10px;
 }
 
+
 button:active {
     transform: scale(0.90);
 }
+
 
 button.btn {
     background-color: transparent;
@@ -97,6 +99,7 @@ input {
     margin: 2px 0;
     height: 50px;
     width: 300px;
+    text-align: center;
 }
 
 .container {
