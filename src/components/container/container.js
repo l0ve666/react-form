@@ -7,6 +7,8 @@ import SignUpText from "./sign/sign-up-text";
 import SignUpEmail from "./sign/sign-up-email";
 import SignUpPassword from "./sign/sign-up-password";
 import Img from "./img";
+import {BrowserRouter as Router, Routes, Route, Link, BrowserRouter} from "react-router-dom";
+import Dashboard from "./dashboard";
 
 //sa fac reverse la input sa le scot inapoi aici pentru a face button disabled
 
@@ -37,8 +39,8 @@ function Container() {
             }).then(res => res.json())
                 .then(user => {
                     console.log(`user created success`, user)
-                    const data2 =  JSON.stringify(user)
-                    localStorage.setItem(`info`,data2)
+                    const data2 = JSON.stringify(user)
+                    localStorage.setItem(`info`, data2)
                 })
         }
 
@@ -47,10 +49,20 @@ function Container() {
     const onLogin = (data) => {
         data.preventDefault()
 
+        let loginData = {
+            "email": data.target[0].value,
+            "password": data.target[1].value,
+        }
+        console.log(JSON.stringify(loginData))
+        console.log(localStorage.getItem(`info`))
+
     }
 
-
     return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/dashboard" element={<Container />} />
+            </Routes>
         <div className={"container"}>
             <div className="account create-account">
                 <form action="#" id="form" onSubmit={onSubmit}>
@@ -69,7 +81,6 @@ function Container() {
                     <Img/>
                     <input type="email" placeholder={`Email`}/>
                     <input type="password" placeholder={`Password`}/>
-
                     <a href="#" className="forgot-password">{btn.footer}</a>
                     <button className="sign-In" type="submit">{btn.button}</button>
                 </form>
@@ -90,7 +101,9 @@ function Container() {
                 </div>
             </div>
         </div>
+        </BrowserRouter>
     );
 }
+
 
 export default Container;

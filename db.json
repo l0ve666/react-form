@@ -1,6 +1,12 @@
 {
   "users": [
     {
+      "name": "admin",
+      "email": "admin@admin.ad",
+      "password": "admin",
+      "id": 0
+    },
+    {
       "name": "asd",
       "email": "asda@gmail.com",
       "password": "asd",
@@ -23,6 +29,18 @@
       "email": "mmurariu13@gmail.com",
       "password": "asd",
       "id": 10
+    },
+    {
+      "name": "debik",
+      "email": "asd@asd.asd",
+      "password": "asd",
+      "id": 11
+    },
+    {
+      "name": "asd",
+      "email": "asdasdasd@dadas",
+      "password": "asdasdsadasdasd",
+      "id": 12
     }
   ]
 }
