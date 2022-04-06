@@ -8,6 +8,8 @@ import SignUpEmail from "./sign/sign-up-email";
 import SignUpPassword from "./sign/sign-up-password";
 import Img from "./img";
 
+//sa fac reverse la input sa le scot inapoi aici pentru a face button disabled
+
 function Container() {
 
     const {
@@ -18,20 +20,35 @@ function Container() {
     });
 
     const onSubmit = (data) => {
-        let alldata = [
-            data.target[0].value,
-            data.target[1].value,
-            data.target[2].value
-        ]
-        console.log(alldata);
+        let allData = {
+            "name": data.target[0].value,
+            "email": data.target[1].value,
+            "password": data.target[2].value
+        }
+
+        console.log(JSON.stringify(allData));
         data.preventDefault()
-        reset()
+
+        const fetchData = async () => {
+            await fetch(`http://localhost:8000/users`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(allData)
+            }).then(res => res.json())
+                .then(user => {
+                    console.log(`user created success`, user)
+                    const data2 =  JSON.stringify(user)
+                    localStorage.setItem(`info`,data2)
+                })
+        }
+
+        fetchData()
+    }
+    const onLogin = (data) => {
+        data.preventDefault()
+
     }
 
-    const onLogin = (data) =>{
-        data.preventDefault()
-        reset()
-    }
 
     return (
         <div className={"container"}>

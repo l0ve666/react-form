@@ -1,9 +1,28 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
-  ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
-  ],
-  "profile": { "name": "typicode" }
+  "users": [
+    {
+      "name": "asd",
+      "email": "asda@gmail.com",
+      "password": "asd",
+      "id": 7
+    },
+    {
+      "name": "asd",
+      "email": "asda@gmail.com",
+      "password": "asd",
+      "id": 8
+    },
+    {
+      "name": "asd",
+      "email": "asda@gmail.com",
+      "password": "asd",
+      "id": 9
+    },
+    {
+      "name": "Mihai",
+      "email": "mmurariu13@gmail.com",
+      "password": "asd",
+      "id": 10
+    }
+  ]
 }
