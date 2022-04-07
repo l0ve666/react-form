@@ -30,10 +30,8 @@
 
    const button1 = document.querySelectorAll(`button`)
 button1.forEach(ev=>{
-    console.log(ev);
     ev.addEventListener(`click`,(e)=>{
       e.classList.toggle(`.active`)
-      console.log(e);
   })
 })
 

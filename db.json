@@ -7,40 +7,22 @@
       "id": 0
     },
     {
-      "name": "asd",
-      "email": "asda@gmail.com",
-      "password": "asd",
-      "id": 7
-    },
-    {
-      "name": "asd",
-      "email": "asda@gmail.com",
-      "password": "asd",
-      "id": 8
-    },
-    {
-      "name": "asd",
-      "email": "asda@gmail.com",
-      "password": "asd",
-      "id": 9
-    },
-    {
-      "name": "Mihai",
+      "name": "mihai",
       "email": "mmurariu13@gmail.com",
-      "password": "asd",
-      "id": 10
+      "password": "asdasd123",
+      "id": 1
     },
     {
-      "name": "debik",
-      "email": "asd@asd.asd",
-      "password": "asd",
-      "id": 11
+      "name": "asdasdasd",
+      "email": "asdasdasd@dadas.com",
+      "password": "asdasdsadadasd",
+      "id": 2
     },
     {
-      "name": "asd",
-      "email": "asdasdasd@dadas",
-      "password": "asdasdsadasdasd",
-      "id": 12
+      "name": "mihai",
+      "email": "mmurariu13@gmail.com",
+      "password": "P123456",
+      "id": 3
     }
   ]
 }

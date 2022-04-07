@@ -3,29 +3,29 @@ import "./container.css";
 import {createAccount, infoLoginRight, infoLoginLeft, btn} from '../modules/animation'
 import containerClick from "../modules/activeanim";
 import {useForm} from 'react-hook-form'
-import SignUpText from "./sign/sign-up-text";
-import SignUpEmail from "./sign/sign-up-email";
-import SignUpPassword from "./sign/sign-up-password";
 import Img from "./img";
-import {BrowserRouter as Router, Routes, Route, Link, BrowserRouter} from "react-router-dom";
-import Dashboard from "./dashboard";
-
-//sa fac reverse la input sa le scot inapoi aici pentru a face button disabled
+import { Route, Navigate } from 'react-router-dom'
 
 function Container() {
 
     const {
-        formState: {},
-        reset,
+        register,
+        formState: {errors, isValid},
+        reset
     } = useForm({
         mode: "onBlur"
+
     });
 
+
+
+
     const onSubmit = (data) => {
+
         let allData = {
-            "name": data.target[0].value,
-            "email": data.target[1].value,
-            "password": data.target[2].value
+            name: document.querySelector('.value-name').value,
+            email: document.querySelector('.value-email').value,
+            password: document.querySelector('.value-password').value
         }
 
         console.log(JSON.stringify(allData));
@@ -45,42 +45,108 @@ function Container() {
         }
 
         fetchData()
+        reset()
     }
     const onLogin = (data) => {
         data.preventDefault()
 
         let loginData = {
-            "email": data.target[0].value,
-            "password": data.target[1].value,
+            email: document.querySelector(`.value-log-email`).value,
+            password: document.querySelector(`.value-log-password`).value,
         }
-        console.log(JSON.stringify(loginData))
-        console.log(localStorage.getItem(`info`))
+
+        const infoData = localStorage.getItem('info')
+        console.log(infoData)
+
+        const fetchData = () => {
+            fetch(`http://localhost:8000/users`, {
+                method: 'GET',
+            }).then(res => res.json())
+                .then(user => {
+                    user.map((type) => {
+                        if (type.email === loginData.email && type.password === loginData.password) {
+                            console.log(true)
+                        } else {
+                            console.log(false)
+                        }
+                    })
+                })
+        }
+
+        fetchData()
 
     }
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/dashboard" element={<Container />} />
-            </Routes>
         <div className={"container"}>
             <div className="account create-account">
                 <form action="#" id="form" onSubmit={onSubmit}>
                     <h1 className="info-login">{createAccount.title}</h1>
                     <Img/>
                     <p className="text">{createAccount.subTitle}</p>
-                    <SignUpText/>
-                    <SignUpEmail/>
-                    <SignUpPassword/>
-                    <button className="sign-Up" type="submit">{createAccount.button}</button>
+                    <>
+                        <input type='text'
+                               {...register('firstName', {
+                                   required: true,
+                                   minLength: {
+                                       value: 3,
+                                       message: 'At least 3 symbols'
+                                   },
+
+                               })}
+                               placeholder={`Name`} className={'value-name'}
+
+                        />
+                        <div>
+                            <div style={{height: 20, color: "red"}}>{errors?.firstName &&
+                                <p>{errors?.firstName.message || 'Fill up Name Field!'}</p>}</div>
+                        </div>
+                    </>
+                    <>
+                        <input type='email'
+                               {...register('email', {
+                                   required: true,
+                                   pattern: {
+                                       value: /\S+@\S+\.\S+/
+                                   },
+                                   message: "Entered value does not match email format"
+                               })}
+                               placeholder={`Email`} className={'value-email'}
+                        />
+                        <div>
+                            <div style={{height: 20, color: "red"}}>{
+                                errors?.email &&
+                                <p>{errors?.email.message || 'Entered value does not match email format'}</p>}
+                            </div>
+                        </div>
+                    </>
+                    <div>
+
+                        <input type='password'
+                               {...register('password', {
+                                   required: true,
+                                   minLength: {
+                                       message: 'At least 6 characters',
+                                       value: 6,
+                                   }
+                               })}
+                               placeholder={`Password`} className={'value-password'}
+
+                        />
+                        <div style={{height: 20, color: "red", marginLeft: 88}}>{
+                            errors?.password && <p>{errors?.password.message || 'At least 6 characters'}</p>}
+                        </div>
+                    </div>
+                    <button className="sign-Up disabled" disabled={!isValid}
+                            type="submit">{createAccount.button}</button>
                 </form>
             </div>
             <div className="account singIn">
                 <form action="#" className="form" onSubmit={onLogin} id={'form'}>
                     <h1 className="info-login">{btn.title}</h1>
                     <Img/>
-                    <input type="email" placeholder={`Email`}/>
-                    <input type="password" placeholder={`Password`}/>
+                    <input type="email" placeholder={`Email`} className={'value-log-email'}/>
+                    <input type="password" placeholder={`Password`} className={'value-log-password'}/>
                     <a href="#" className="forgot-password">{btn.footer}</a>
                     <button className="sign-In" type="submit">{btn.button}</button>
                 </form>
@@ -101,7 +167,6 @@ function Container() {
                 </div>
             </div>
         </div>
-        </BrowserRouter>
     );
 }
 

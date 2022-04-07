@@ -1,16 +1,25 @@
-import React from 'react';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import '../app/app.css'
 
-function Dashboard() {
+
+const Dashboard = () => {
+
+
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/dashboard" element={<Dashboard />} />
-            </Routes>
-            <div>
-                <p>asdasdasda</p>
+        <div>
+            <div className={'container-style'}>
+                <div className={'container-left'}>
+                    <button className={'button-left'}> <p className={'paragraph-text'}>test1</p> </button>
+                    <button className={'button-left'}> <p className={'paragraph-text'}>test1</p> </button>
+                    <button className={'button-left'}> <p className={'paragraph-text'}>test1</p> </button>
+                    <button className={'button-left'}> <p className={'paragraph-text'}>test1</p> </button>
+                    <button className={'button-left'}> <p className={'paragraph-text'}>test1</p> </button>
+                    <button className={'button-left'} > <p className={'paragraph-text'}>Logout</p> </button>
+                </div>
+                <div className={'container-right'}>
+
+                </div>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 
