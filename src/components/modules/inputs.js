@@ -1,12 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 const contents = {
     inputs: [
-    //     {
-    //     label: 'Name',
-    //     name: 'name',
-    //     type: 'text',
-    // },
+
         {
             label: 'Email',
             name: 'email',

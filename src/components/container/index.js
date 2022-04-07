@@ -1,3 +1,3 @@
 import Container  from "./container";
-import Dashboard from "./dashboard";
+import Dashboard from "./subDirs/dashboard";
 export default Container

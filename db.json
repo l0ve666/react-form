@@ -5,60 +5,11 @@
       "email": "admin@admin.ad",
       "password": "admin",
       "id": 0
-    },
-    {
-      "name": "mihai",
-      "email": "mmurariu13@gmail.com",
-      "password": "asdasd123",
-      "id": 1
-    },
-    {
-      "name": "asdasdasd",
-      "email": "asdasdasd@dadas.com",
-      "password": "asdasdsadadasd",
-      "id": 2
-    },
-    {
+    },{
       "name": "mihai",
       "email": "mmurariu13@gmail.com",
       "password": "P123456",
-      "id": 3
-    },
-    {
-      "name": "asd",
-      "email": "asdasdasd@dadas.com",
-      "password": "asdadsadadad",
-      "id": 4
-    },
-    {
-      "name": "asdasdasd",
-      "email": "asdasdasd@dadas.comasda",
-      "password": "asdadadasdasda",
-      "id": 5
-    },
-    {
-      "name": "asdasdasd",
-      "email": "asd@gmail.com",
-      "password": "asdasdasdsadasd",
-      "id": 6
-    },
-    {
-      "name": "asdasdasd",
-      "email": "asdasdasd@dadas.com",
-      "password": "asdasdasdadasdasda",
-      "id": 7
-    },
-    {
-      "name": "asdasd",
-      "email": "asd@gmail.com",
-      "password": "asdasdasdad",
-      "id": 8
-    },
-    {
-      "name": "lox",
-      "email": "loxlox@lox.lox",
-      "password": "loxloxlox",
-      "id": 9
+      "id": 1
     }
   ]
 }

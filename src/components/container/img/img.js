@@ -1,6 +1,6 @@
-import instagram from './img/Instagram01.png'
-import google from './img/google.png'
-import facebook from './img/facebook.png'
+import instagram from './Instagram01.png'
+import google from './google.png'
+import facebook from './facebook.png'
 import React from "react";
 
 function Img(){
