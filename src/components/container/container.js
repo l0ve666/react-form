@@ -69,6 +69,8 @@ function Container() {
                     user.map((type) => {
                         if (type.email === loginData.email && type.password === loginData.password) {
                             console.log(true)
+                             let asd = JSON.stringify(type)
+                            localStorage.setItem(`newInfo`,asd)
                             redirectDashboard()
                         }
                     })
@@ -80,6 +82,8 @@ function Container() {
     }
 
     return (
+
+        <div><div className={'popup-alert hidden'}><p>asd</p></div>
         <div className={"container"}>
             <div className="account create-account">
                 <form action="#" id="form" onSubmit={onSubmit}>
@@ -153,6 +157,7 @@ function Container() {
                     <button className="sign-In" type="submit">{btn.button}</button>
                 </form>
             </div>
+
             <div className="welcome-info">
                 <div className="info">
                     <div className="welcome-account-info left">
@@ -169,6 +174,7 @@ function Container() {
                 </div>
             </div>
         </div>
+            </div>
     );
 }
 
