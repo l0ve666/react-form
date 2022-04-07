@@ -32,7 +32,6 @@ const Dashboard = () => {
                         <h5 className={'h5'}>{`User's Id = ` + user.id }</h5>
                         <h5 className={'h5'}>{`User's Email = ` + user.email}</h5>
                     </div>
-
                 </div>
             </div>
         </div>

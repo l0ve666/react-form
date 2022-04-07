@@ -4,7 +4,12 @@ import {createAccount, infoLoginRight, infoLoginLeft, btn} from '../modules/anim
 import containerClick from "../modules/activeanim";
 import {useForm} from 'react-hook-form'
 import Img from "./img";
-import {Route, Navigate, useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
+
+//daca exista acelasi email nu se poate de creat cont
+//btn
+//info sub login
+//optimizarea codului
 
 function Container() {
 
@@ -22,6 +27,10 @@ function Container() {
         dashboard('/dashboard')
     }
 
+    let success = useNavigate()
+    const redirectSuccess = () =>{
+        success('/success')
+    }
 
     const onSubmit = (data) => {
 
@@ -44,9 +53,11 @@ function Container() {
                     console.log(`user created success`, user)
                     const data2 = JSON.stringify(user)
                     localStorage.setItem(`info`, data2)
-                })
-        }
+                    redirectSuccess()
 
+                })
+
+        }
         fetchData()
         reset()
     }
@@ -59,7 +70,7 @@ function Container() {
         }
 
         const infoData = localStorage.getItem('info')
-        console.log(infoData)
+        // console.log(infoData)
 
         const fetchData = () => {
             fetch(`http://localhost:8000/users`, {

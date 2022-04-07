@@ -3,6 +3,8 @@ import Container from "../container";
 import "./app.css"
 import {Routes, Router,Route} from "react-router-dom";
 import Dashboard from "../container/dashboard";
+import Success from "../container/success";
+
 
 
 class App extends Component {
@@ -12,6 +14,7 @@ class App extends Component {
                 <Routes>
                     <Route path="/" element={<Container />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/success" element={<Success />} />
                 </Routes>
             </div>
         );
