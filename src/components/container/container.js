@@ -4,7 +4,7 @@ import {createAccount, infoLoginRight, infoLoginLeft, btn} from '../modules/anim
 import containerClick from "../modules/activeanim";
 import {useForm} from 'react-hook-form'
 import Img from "./img";
-import { Route, Navigate } from 'react-router-dom'
+import {Route, Navigate, useNavigate} from 'react-router-dom'
 
 function Container() {
 
@@ -17,7 +17,10 @@ function Container() {
 
     });
 
-
+    let dashboard = useNavigate()
+    const redirectDashboard = () => {
+        dashboard('/dashboard')
+    }
 
 
     const onSubmit = (data) => {
@@ -66,8 +69,7 @@ function Container() {
                     user.map((type) => {
                         if (type.email === loginData.email && type.password === loginData.password) {
                             console.log(true)
-                        } else {
-                            console.log(false)
+                            redirectDashboard()
                         }
                     })
                 })

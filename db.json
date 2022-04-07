@@ -23,6 +23,12 @@
       "email": "mmurariu13@gmail.com",
       "password": "P123456",
       "id": 3
+    },
+    {
+      "name": "asd",
+      "email": "asdasdasd@dadas.com",
+      "password": "asdadsadadad",
+      "id": 4
     }
   ]
 }
