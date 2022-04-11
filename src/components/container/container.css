@@ -229,18 +229,6 @@ a{
     margin-bottom: 5px;
 }
 
-.popup-alert{
-    width: 500px;
-    height: 100px;
-background: -webkit-linear-gradient(top left, #F8522DFF 10%, #F84B67FF 100%);
-    color: white;
-    margin-top: 600px;
-    margin-left: 200px;
-    z-index: 100;
-    position: absolute;
-    text-align: center;
-    align-items: center;
-}
 
 .hidden{
 opacity: 0%;

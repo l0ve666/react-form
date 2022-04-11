@@ -6,21 +6,14 @@ import {useForm} from 'react-hook-form'
 import Img from "./img/img";
 import {useNavigate} from 'react-router-dom'
 
-//btn
-//info sub login
-//optimizarea codului
-
-
 function Container() {
 
     const {
         register,
         formState: {errors, isValid},
         reset
-    } = useForm({
-        mode: "onChange"
+    } = useForm({mode: "all"});
 
-    });
 
     let dashboard = useNavigate()
     const redirectDashboard = () => {
@@ -84,7 +77,7 @@ function Container() {
         reset()
     }
 
-    const onLogin = (data) => {
+    const onTouched = (data) => {
         data.preventDefault()
 
         let loginData = {
@@ -92,7 +85,7 @@ function Container() {
             password: document.querySelector(`.value-log-password`).value,
         }
 
-        const infoData = localStorage.getItem('info')
+        localStorage.getItem('info')
 
         const fetchData = () => {
             fetch(`http://localhost:8000/users`, {
@@ -110,8 +103,8 @@ function Container() {
                         }
 
                     })
-                    if(exists === false){
-                        console.log(`user falied l0g1H)`)
+                    if (exists === false) {
+                        alert(`User Failed Login!`)
                     }
                 })
         }
@@ -123,7 +116,7 @@ function Container() {
     return (
 
         <div>
-            <div className={'popup-alert hidden'}><p>asd</p></div>
+
             <div className={"container"}>
                 <div className="account create-account">
                     <form action="#" id="form" onSubmit={onSubmit}>
@@ -188,11 +181,33 @@ function Container() {
                     </form>
                 </div>
                 <div className="account singIn">
-                    <form action="#" className="form" onSubmit={onLogin} id={'form'}>
+                    <form action="#" className="form" onSubmit={onTouched} id={'form'}>
                         <h1 className="info-login">{btn.title}</h1>
                         <Img/>
-                        <input type="email" placeholder={`Email`} className={'value-log-email'} />
-                        <input type="password" placeholder={`Password`} className={'value-log-password'} />
+                        <input type="email" placeholder={`Email`} className={'value-log-email'}
+                               {...register('ema', {
+                                   pattern: {
+                                       value: /\S+@\S+\.\S+/
+                                   },
+                                   message: "Entered value does not match email format"
+                               })}
+                        />
+                        <div style={{height: 35, color: "red"}}>{
+                            errors?.ema && <p>{errors?.ema.message || 'Entered value does not match email format'}</p>}
+                        </div>
+
+                        <input type="password" placeholder={`Password`} className={'value-log-password'}
+                               {...register('passss', {
+                                   minLength: {
+                                       message: 'At least 6 characters',
+                                       value: 6,
+                                   }
+                               })}
+                        />
+                        <div style={{height: 20, color: "red"}}>{
+                            errors?.passss && <p>{errors?.passss.message || 'At least 6 characters'}</p>}
+                        </div>
+
                         <a href="#" className="forgot-password">{btn.footer}</a>
                         <button className="sign-In" type="submit">{btn.button}</button>
                     </form>
