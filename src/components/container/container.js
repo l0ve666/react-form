@@ -6,10 +6,10 @@ import {useForm} from 'react-hook-form'
 import Img from "./img/img";
 import {useNavigate} from 'react-router-dom'
 
-//daca exista acelasi email nu se poate de creat cont
 //btn
 //info sub login
 //optimizarea codului
+
 
 function Container() {
 
@@ -18,7 +18,7 @@ function Container() {
         formState: {errors, isValid},
         reset
     } = useForm({
-        mode: "onBlur"
+        mode: "onChange"
 
     });
 
@@ -32,6 +32,42 @@ function Container() {
         success('/success')
     }
 
+
+    const fetchData = async (allData) => {
+        await fetch(`http://localhost:8000/users`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(allData)
+        }).then(res => res.json())
+            .then(user => {
+                console.log(`user created success`, user)
+                const data2 = JSON.stringify(user)
+                localStorage.setItem(`info`, data2)
+                redirectSuccess()
+            })
+
+    }
+
+    const filterEmail = async (allData) => {
+        await fetch(`http://localhost:8000/users`, {
+            method: 'get',
+        }).then(res => res.json())
+            .then(data => {
+                let exists = false
+                data.map(ind => {
+                        if (ind.email === allData.email) {
+                            // console.log(`mail already exists`, ind.email, ` `, allData.email)
+                            exists = true
+                        }
+                    }
+                )
+                if (exists === false) {
+                    fetchData(allData)
+                }
+            })
+    }
+
+
     const onSubmit = (data) => {
 
         let allData = {
@@ -40,27 +76,14 @@ function Container() {
             password: document.querySelector('.value-password').value
         }
 
-        console.log(JSON.stringify(allData));
+        console.log(allData);
         data.preventDefault()
 
-        const fetchData = async () => {
-            await fetch(`http://localhost:8000/users`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(allData)
-            }).then(res => res.json())
-                .then(user => {
-                    console.log(`user created success`, user)
-                    const data2 = JSON.stringify(user)
-                    localStorage.setItem(`info`, data2)
-                    redirectSuccess()
+        filterEmail(allData)
 
-                })
-
-        }
-        fetchData()
         reset()
     }
+
     const onLogin = (data) => {
         data.preventDefault()
 
@@ -70,21 +93,26 @@ function Container() {
         }
 
         const infoData = localStorage.getItem('info')
-        // console.log(infoData)
 
         const fetchData = () => {
             fetch(`http://localhost:8000/users`, {
                 method: 'GET',
             }).then(res => res.json())
                 .then(user => {
+                    let exists = false
                     user.map((type) => {
                         if (type.email === loginData.email && type.password === loginData.password) {
                             console.log(true)
                             let asd = JSON.stringify(type)
                             localStorage.setItem(`newInfo`, asd)
+                            exists = true
                             redirectDashboard()
                         }
+
                     })
+                    if(exists === false){
+                        console.log(`user falied l0g1H)`)
+                    }
                 })
         }
 
@@ -155,7 +183,7 @@ function Container() {
                                 errors?.password && <p>{errors?.password.message || 'At least 6 characters'}</p>}
                             </div>
                         </div>
-                        <button className="sign-Up disabled" disabled={!isValid}
+                        <button className="sign-Up" disabled={!isValid}
                                 type="submit">{createAccount.button}</button>
                     </form>
                 </div>
@@ -163,8 +191,8 @@ function Container() {
                     <form action="#" className="form" onSubmit={onLogin} id={'form'}>
                         <h1 className="info-login">{btn.title}</h1>
                         <Img/>
-                        <input type="email" placeholder={`Email`} className={'value-log-email'}/>
-                        <input type="password" placeholder={`Password`} className={'value-log-password'}/>
+                        <input type="email" placeholder={`Email`} className={'value-log-email'} />
+                        <input type="password" placeholder={`Password`} className={'value-log-password'} />
                         <a href="#" className="forgot-password">{btn.footer}</a>
                         <button className="sign-In" type="submit">{btn.button}</button>
                     </form>
